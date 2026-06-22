@@ -1,0 +1,679 @@
+/* ==========================
+   RESET
+========================== */
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ==========================
+   VARIÁVEIS
+========================== */
+
+:root {
+    --cor-fundo: #f0f4ff;
+    --cor-texto: #111827;
+    --cor-texto-suave: #6b7280;
+    --cor-card: #ffffff;
+    --cor-borda: #d1d5db;
+    --cor-primaria: #2563eb;
+    --cor-primaria-hover: #1d4ed8;
+    --cor-secundaria: #111827;
+    --cor-erro: #991b1b;
+    --cor-erro-fundo: #fef2f2;
+    --cor-destaque-fundo: #eff6ff;
+    --sombra-leve: 0 1px 4px rgba(0,0,0,.08);
+    --sombra: 0 4px 16px rgba(0,0,0,.10);
+    --sombra-card: 0 2px 8px rgba(0,0,0,.07);
+    --raio: 16px;
+    --raio-sm: 10px;
+    --transicao: .35s ease;
+}
+
+/* ==========================
+   TEMAS DINÂMICOS
+========================== */
+
+body.tema-sol {
+    --cor-fundo: #fffbeb;
+    --cor-destaque-fundo: #fef3c7;
+}
+
+body.tema-chuva {
+    --cor-fundo: #eff6ff;
+    --cor-destaque-fundo: #dbeafe;
+}
+
+body.tema-tempestade {
+    --cor-fundo: #f0f0f5;
+    --cor-destaque-fundo: #e0e0ee;
+}
+
+body.tema-neve {
+    --cor-fundo: #f0f9ff;
+    --cor-destaque-fundo: #e0f2fe;
+}
+
+/* ==========================
+   GRADIENTE DE FUNDO
+========================== */
+
+.bg-gradient {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: var(--cor-fundo);
+    transition: background var(--transicao);
+}
+
+/* ==========================
+   TIPOGRAFIA / BODY
+========================== */
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    color: var(--cor-texto);
+    min-height: 100vh;
+    padding: 1.25rem 1rem 3rem;
+}
+
+/* ==========================
+   HEADER
+========================== */
+
+header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-top: .5rem;
+}
+
+.header-inner {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+}
+
+.logo-icon {
+    font-size: 3rem;
+    line-height: 1;
+    display: block;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -.02em;
+    line-height: 1.1;
+}
+
+.subtitulo {
+    font-size: 1rem;
+    color: var(--cor-texto-suave);
+    margin-top: .25rem;
+}
+
+/* ==========================
+   MAIN / CONTAINER
+========================== */
+
+main {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+/* ==========================
+   BUSCA
+========================== */
+
+.busca-clima {
+    background: var(--cor-card);
+    padding: 1.5rem;
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+}
+
+label {
+    display: block;
+    font-size: .875rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
+    color: var(--cor-texto-suave);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: .75rem;
+}
+
+input {
+    width: 100%;
+    min-height: 54px;
+    padding: .875rem 3rem .875rem 1rem;
+    font-size: 1.1rem;
+    font-family: inherit;
+    border: 2px solid var(--cor-borda);
+    border-radius: var(--raio-sm);
+    background: #fafafa;
+    color: var(--cor-texto);
+    transition: border-color var(--transicao), box-shadow var(--transicao);
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 4px rgba(37,99,235,.12);
+    background: #fff;
+}
+
+.btn-limpar {
+    position: absolute;
+    right: .75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: var(--cor-texto-suave);
+    cursor: pointer;
+    padding: .25rem;
+    line-height: 1;
+    border-radius: 50%;
+    transition: color .2s, background .2s;
+}
+
+.btn-limpar:hover {
+    color: var(--cor-texto);
+    background: var(--cor-borda);
+}
+
+/* ==========================
+   HISTÓRICO
+========================== */
+
+.historico-wrapper {
+    margin-bottom: .75rem;
+}
+
+.historico-label {
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--cor-texto-suave);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: .4rem;
+}
+
+.historico-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .4rem;
+    list-style: none;
+}
+
+.historico-item {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+    background: var(--cor-destaque-fundo);
+    border: 1px solid var(--cor-borda);
+    border-radius: 100px;
+    overflow: hidden;
+    animation: fadeIn .25s ease;
+}
+
+.historico-btn-cidade {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: .88rem;
+    font-family: inherit;
+    color: var(--cor-primaria);
+    font-weight: 600;
+    padding: .3rem .6rem .3rem .75rem;
+    transition: color .2s;
+}
+
+.historico-btn-cidade:hover {
+    color: var(--cor-primaria-hover);
+}
+
+.historico-btn-remover {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: .78rem;
+    color: var(--cor-texto-suave);
+    padding: .3rem .6rem .3rem .1rem;
+    transition: color .2s;
+    line-height: 1;
+}
+
+.historico-btn-remover:hover {
+    color: var(--cor-erro);
+}
+
+/* ==========================
+   BOTÕES
+========================== */
+
+.grupo-botoes {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    border-radius: var(--raio-sm);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: .875rem 1.25rem;
+    min-height: 54px;
+    transition: opacity .2s, transform .1s, box-shadow .2s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
+
+button:active {
+    transform: scale(.98);
+}
+
+.btn-primario {
+    background: var(--cor-primaria);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(37,99,235,.25);
+}
+
+.btn-primario:hover {
+    background: var(--cor-primaria-hover);
+    box-shadow: 0 4px 14px rgba(37,99,235,.35);
+}
+
+.btn-secundario {
+    background: var(--cor-secundaria);
+    color: #fff;
+}
+
+.btn-secundario:hover {
+    opacity: .88;
+}
+
+button:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ==========================
+   FOCUS WCAG
+========================== */
+
+button:focus-visible,
+input:focus-visible,
+.historico-btn-cidade:focus-visible,
+.historico-btn-remover:focus-visible {
+    outline: 3px solid #f59e0b;
+    outline-offset: 3px;
+}
+
+/* ==========================
+   RESULTADO
+========================== */
+
+.resultado {
+    background: var(--cor-card);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    min-height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.resultado-vazio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .75rem;
+    color: var(--cor-texto-suave);
+}
+
+.resultado-vazio-icone {
+    font-size: 2.5rem;
+    opacity: .6;
+}
+
+.resultado-vazio p {
+    font-size: 1rem;
+    max-width: 28ch;
+    line-height: 1.5;
+}
+
+/* Conteúdo de clima */
+.clima-atual {
+    width: 100%;
+    animation: fadeIn .4s ease;
+}
+
+.cidade {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: .25rem;
+    letter-spacing: -.02em;
+}
+
+.pais {
+    font-size: .9rem;
+    color: var(--cor-texto-suave);
+    margin-bottom: 1.25rem;
+}
+
+.temperatura-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .75rem;
+    margin-bottom: .75rem;
+}
+
+.clima-icone {
+    font-size: 3.5rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,.1));
+}
+
+.temperatura {
+    font-family: 'DM Mono', monospace;
+    font-size: 5rem;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -.03em;
+}
+
+.temperatura sup {
+    font-size: 2rem;
+    vertical-align: super;
+    opacity: .6;
+}
+
+.clima-descricao {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: .75rem;
+    color: var(--cor-texto);
+}
+
+.mensagem {
+    font-size: .95rem;
+    color: var(--cor-texto-suave);
+    line-height: 1.6;
+    max-width: 38ch;
+    margin: 0 auto;
+}
+
+/* ==========================
+   DADOS EXTRAS
+========================== */
+
+.dados-extras {
+    background: var(--cor-card);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    padding: 1.25rem 1.5rem;
+    animation: slideUp .35s ease;
+}
+
+.dados-extras-titulo {
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--cor-texto-suave);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 1rem;
+}
+
+.dados-extras-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: .75rem;
+}
+
+.dado-item {
+    background: var(--cor-destaque-fundo);
+    border-radius: var(--raio-sm);
+    padding: .875rem;
+    text-align: center;
+}
+
+.dado-icone {
+    font-size: 1.4rem;
+    display: block;
+    margin-bottom: .3rem;
+}
+
+.dado-valor {
+    font-family: 'DM Mono', monospace;
+    font-size: 1.15rem;
+    font-weight: 500;
+    display: block;
+    line-height: 1.2;
+}
+
+.dado-label {
+    font-size: .75rem;
+    color: var(--cor-texto-suave);
+    display: block;
+    margin-top: .2rem;
+}
+
+/* ==========================
+   PREVISÃO SEMANAL
+========================== */
+
+.previsao-semanal {
+    background: var(--cor-card);
+    border-radius: var(--raio);
+    box-shadow: var(--sombra);
+    padding: 1.25rem 1.5rem;
+    animation: slideUp .45s ease;
+}
+
+.previsao-titulo {
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--cor-texto-suave);
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    margin-bottom: 1rem;
+}
+
+.previsao-lista {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.previsao-dia {
+    display: grid;
+    grid-template-columns: 5rem 2.5rem 1fr auto auto;
+    align-items: center;
+    gap: .75rem;
+    padding: .625rem .75rem;
+    border-radius: var(--raio-sm);
+    transition: background .2s;
+    animation: fadeIn .3s ease;
+}
+
+.previsao-dia:hover {
+    background: var(--cor-destaque-fundo);
+}
+
+.previsao-dia-nome {
+    font-weight: 600;
+    font-size: .95rem;
+}
+
+.previsao-dia-icone {
+    font-size: 1.4rem;
+    text-align: center;
+}
+
+.previsao-dia-descricao {
+    font-size: .88rem;
+    color: var(--cor-texto-suave);
+}
+
+.previsao-dia-max {
+    font-family: 'DM Mono', monospace;
+    font-size: .95rem;
+    font-weight: 500;
+    text-align: right;
+}
+
+.previsao-dia-min {
+    font-family: 'DM Mono', monospace;
+    font-size: .88rem;
+    color: var(--cor-texto-suave);
+    text-align: right;
+    min-width: 3ch;
+}
+
+/* ==========================
+   LOADING
+========================== */
+
+.loading-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    color: var(--cor-texto-suave);
+}
+
+.loading-spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid var(--cor-borda);
+    border-top-color: var(--cor-primaria);
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+}
+
+.loading-texto {
+    font-size: 1rem;
+}
+
+/* ==========================
+   ERRO
+========================== */
+
+.erro-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .6rem;
+    width: 100%;
+}
+
+.erro-icone {
+    font-size: 2rem;
+}
+
+.erro {
+    color: var(--cor-erro);
+    font-size: .95rem;
+    font-weight: 600;
+    text-align: center;
+    max-width: 34ch;
+    line-height: 1.5;
+}
+
+/* ==========================
+   ACESSIBILIDADE
+========================== */
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/* ==========================
+   ANIMAÇÕES
+========================== */
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ==========================
+   TABLET E DESKTOP
+========================== */
+
+@media (min-width: 640px) {
+
+    h1 { font-size: 2.5rem; }
+
+    .grupo-botoes {
+        flex-direction: row;
+    }
+
+    .grupo-botoes button {
+        flex: 1;
+    }
+
+    .temperatura {
+        font-size: 6rem;
+    }
+
+    .cidade {
+        font-size: 1.75rem;
+    }
+
+    .previsao-dia {
+        grid-template-columns: 7rem 2.5rem 1fr auto auto;
+    }
+}
+
+@media (min-width: 768px) {
+
+    body { padding: 2rem 1.5rem 4rem; }
+
+    h1 { font-size: 3rem; }
+
+    .busca-clima { padding: 2rem; }
+}

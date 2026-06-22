@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previsão do Tempo Fácil</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div class="bg-gradient" aria-hidden="true"></div>
+
+    <header>
+        <div class="header-inner">
+            <span class="logo-icon" aria-hidden="true">☀️</span>
+            <div>
+                <h1>Previsão do Tempo</h1>
+                <p class="subtitulo">Clima atual e próximos dias para qualquer cidade</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- BUSCA -->
+        <section class="busca-clima" aria-labelledby="titulo-busca">
+
+            <h2 id="titulo-busca" class="sr-only">Buscar previsão do tempo</h2>
+
+            <label for="cidade">Cidade</label>
+
+            <div class="input-wrapper">
+                <input
+                    type="text"
+                    id="cidade"
+                    placeholder="Ex.: São Paulo"
+                    autocomplete="off"
+                    aria-describedby="historico-label">
+                <button class="btn-limpar" id="limparBtn" aria-label="Limpar campo" hidden>✕</button>
+            </div>
+
+            <!-- HISTÓRICO -->
+            <div class="historico-wrapper" id="historicoWrapper" hidden>
+                <p id="historico-label" class="historico-label">Buscas recentes</p>
+                <ul class="historico-lista" id="historicoLista" role="list" aria-label="Histórico de cidades buscadas"></ul>
+            </div>
+
+            <div class="grupo-botoes">
+                <button id="buscarBtn" class="btn-primario">
+                    <span aria-hidden="true">🔍</span> Buscar clima
+                </button>
+                <button id="localizacaoBtn" class="btn-secundario">
+                    <span aria-hidden="true">📍</span> Minha localização
+                </button>
+            </div>
+
+        </section>
+
+        <!-- RESULTADO -->
+        <section
+            id="resultado"
+            class="resultado"
+            aria-live="polite"
+            aria-atomic="true">
+
+            <div class="resultado-vazio">
+                <span class="resultado-vazio-icone" aria-hidden="true">🌤️</span>
+                <p>Digite uma cidade ou use sua localização para ver o clima.</p>
+            </div>
+
+        </section>
+
+        <!-- PREVISÃO DOS PRÓXIMOS DIAS -->
+        <section
+            id="previsaoSemanal"
+            class="previsao-semanal"
+            aria-label="Previsão dos próximos dias"
+            hidden>
+        </section>
+
+        <!-- DADOS EXTRAS -->
+        <section
+            id="dadosExtras"
+            class="dados-extras"
+            aria-label="Dados adicionais do clima"
+            hidden>
+        </section>
+
+    </main>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
